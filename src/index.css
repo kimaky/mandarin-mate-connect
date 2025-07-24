@@ -2,41 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Data Comparison Tool Design System - Technical & Modern */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core brand colors - Deep tech blues with cyan accents */
+    --background: 220 27% 8%;
+    --foreground: 213 27% 84%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 27% 10%;
+    --card-foreground: 213 27% 84%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 27% 10%;
+    --popover-foreground: 213 27% 84%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 27% 8%;
+    --primary-glow: 195 100% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 21% 15%;
+    --secondary-foreground: 213 27% 84%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 21% 12%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 158 64% 52%;
+    --accent-foreground: 220 27% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 213 27% 84%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 21% 15%;
+    --input: 240 21% 12%;
+    --ring: 195 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Technical gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-background: linear-gradient(135deg, hsl(220 27% 8%) 0%, hsl(240 21% 12%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(220 27% 10%) 0%, hsl(240 21% 15%) 100%);
+    
+    /* Glowing effects */
+    --glow-primary: 0 0 20px hsl(var(--primary) / 0.3);
+    --glow-accent: 0 0 20px hsl(var(--accent) / 0.3);
+    --glow-destructive: 0 0 20px hsl(var(--destructive) / 0.3);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
