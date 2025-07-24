@@ -8,9 +8,10 @@ interface DataInputPanelProps {
   data: string;
   onDataChange: (data: string) => void;
   placeholder: string;
+  detectedFormat?: string;
 }
 
-export const DataInputPanel = ({ title, data, onDataChange, placeholder }: DataInputPanelProps) => {
+export const DataInputPanel = ({ title, data, onDataChange, placeholder, detectedFormat }: DataInputPanelProps) => {
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -19,7 +20,13 @@ export const DataInputPanel = ({ title, data, onDataChange, placeholder }: DataI
         const content = e.target?.result as string;
         onDataChange(content);
       };
-      reader.readAsText(file);
+      
+      // 根据文件类型选择读取方式
+      if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+        reader.readAsBinaryString(file);
+      } else {
+        reader.readAsText(file);
+      }
     }
   };
 
@@ -71,7 +78,7 @@ export const DataInputPanel = ({ title, data, onDataChange, placeholder }: DataI
           <label className="flex-1">
             <input
               type="file"
-              accept=".json,.txt"
+              accept=".json,.txt,.csv,.xlsx,.xls,.java,.js,.ts,.xml"
               onChange={handleFileUpload}
               className="hidden"
             />
@@ -81,7 +88,7 @@ export const DataInputPanel = ({ title, data, onDataChange, placeholder }: DataI
               onClick={() => (document.querySelector('input[type="file"]') as HTMLInputElement)?.click()}
             >
               <Upload className="mr-2 h-4 w-4" />
-              上传文件
+              上传文件 (JSON, CSV, Excel, Java, 文本)
             </Button>
           </label>
         </div>
@@ -93,8 +100,13 @@ export const DataInputPanel = ({ title, data, onDataChange, placeholder }: DataI
           className="min-h-[400px] font-mono text-sm bg-muted/50 border-border/50 focus:border-primary transition-colors"
         />
         
-        <div className="text-xs text-muted-foreground">
-          行数: {data.split('\n').length} | 字符数: {data.length}
+        <div className="text-xs text-muted-foreground flex justify-between items-center">
+          <span>行数: {data.split('\n').length} | 字符数: {data.length}</span>
+          {detectedFormat && (
+            <span className="bg-primary/10 text-primary px-2 py-1 rounded">
+              格式: {detectedFormat.toUpperCase()}
+            </span>
+          )}
         </div>
       </CardContent>
     </Card>
